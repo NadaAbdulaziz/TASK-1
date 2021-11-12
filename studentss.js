@@ -19,6 +19,8 @@ const addData = (id,name,subject,grade,comment)=>{
      else{
          console.log('wrong data')
      }
+    
+    
    
 }
 const loadData = () =>{
@@ -31,6 +33,8 @@ const loadData = () =>{
     catch(e){
         return[]
     }
+    
+    
 }
 const saveData = (data) =>{
     const info = JSON.stringify(data)
@@ -56,10 +60,14 @@ const readData = (id) =>{
     else{
         console.log('not found')
     }
+    
+    
 
 }
 const listData = () =>{
     const data = loadData()
+    
+    
     data.forEach(data =>{
      console.log(data.name,data.grade)
     })
