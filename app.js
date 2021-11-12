@@ -1,94 +1,87 @@
 const yargs = require('yargs')
 
-const data = require('./students')
+
+const student = require('./student')
+
 yargs.command({
     command:'add',
-    describe:'add student data',
+    describe:'Add Student',
     builder:{
         id:{
-            describe:'id of student',
+            describe:'This is a unique id of student ',
             type:'number',
             demandOption:true
-      
         },
-
-        name:{
-            describe:'name of student',
+        namee:{
+            describe:'This is name of student to be added',
             type:'string',
             demandOption:true
-      
         },
         subject:{
-            describe:'subject of grade three',
+            describe:'This is subject of student to be added',
             type:'string',
             demandOption:true
-      
         },
         grade:{
-            describe:'student grade',
+            describe:'This is grade of student to be added',
             type:'number',
             demandOption:true
-      
         },
         comment:{
-            describe:'please write your comment',
-            type:'string'
-           
-      
+            describe:'This is subject of student to be added',
+            type:'string',
+            demandOption:false
         }
     },
     handler:(argv)=>{
-    
-        data.addData(argv.id,argv.name,argv.subject,argv.grade,argv.comment)
+        if(argv.comment){
+            student.addStudent(argv.id,argv.name,argv.subject,argv.grade,argv.comment)
+        }else{
+            student.addStudent(argv.id,argv.name,argv.subject,argv.grade)
+
+        }
     }
+
 })
+
 yargs.command({
     command:'delete',
-    describe:'add student data',
+    describe:'Delete Student',
     builder:{
         id:{
-            describe:'id of student',
+            describe:'This is id of student to be added',
             type:'number',
             demandOption:true
-      
         }
-
-        
     },
     handler:(argv)=>{
-        data.removedata(argv.id)
         
-        
+        student.removeStudent(argv.id)
     }
 })
+
 yargs.command({
     command:'list',
-    describe:'list of students',
-   
+    describe:'List Students',
     handler:()=>{
-       
-        data.listData()
+        student.listStudent()
     }
+    
 })
+
 yargs.command({
     command:'read',
-    describe:'read student data',
+    describe:'Read Student with specific id',
     builder:{
         id:{
-            describe:'id of student',
-            type:'integer',
+            describe:'This is id of student to be added',
+            type:'number',
             demandOption:true
-      
         }
-
-        
     },
     handler:(argv)=>{
-      
-        
-        data.readData(argv.id)
-
-        
+        student.readStudent(argv.id)
     }
 })
+
 yargs.parse()
